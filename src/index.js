@@ -5,7 +5,9 @@ import ReactDOM from 'react-dom';
 
 import App from './containers/App';
 
+require('../assets/styles/app.less');
+
 let contentNode = document.createElement('div');
-document.getElementsByTagName('body')[0].appendChild(contentNode);
+document.body.appendChild(contentNode);
 
 ReactDOM.render(<App />, contentNode);

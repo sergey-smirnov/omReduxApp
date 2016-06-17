@@ -4,6 +4,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var devFlagPlugin = new webpack.DefinePlugin({
     __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
@@ -18,8 +19,8 @@ module.exports = {
         './src/index.js'
     ],
     output: {
-        path: path.resolve(__dirname, 'dist/js'),
-        filename: 'app.bundle.js'
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'js/app.bundle.js'
     },
     resolveLoader: {
         root: [
@@ -29,10 +30,11 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            filename: '../index.html',
+            filename: 'index.html',
             title: 'One More Redux Application',
-            hash: true
+            hash: false
         }),
+        new ExtractTextPlugin('css/app.css'),
         devFlagPlugin
     ],
     module: {
@@ -44,7 +46,7 @@ module.exports = {
         }, {
             loader: 'babel-loader',
             exclude: /node_modules/,
-            include: path.join(__dirname, 'src'),
+            // include: path.join(__dirname, 'src'),
             query: {
                 presets: ['es2015', 'react']
             }
@@ -53,9 +55,19 @@ module.exports = {
             loader: 'style!css'
         }, {
             test: /\.less$/,
-            include: './assets/',
-            loader: 'style!css!autoprefixer?browsers=last 3 version!less',
-            exclude: /node_modules/
+            exclude: /node_modules/,
+            include: path.join(__dirname, 'assets', 'styles'),
+            loader: ExtractTextPlugin.extract(
+                // activate source maps via loader query
+                'css?sourceMap!' +
+                'autoprefixer?browsers=last 3 version!' +
+                'less?sourceMap'
+
+                // 'style-loader!',
+                // 'css-loader!' +
+                // 'autoprefixer-loader?browsers=last 3 version!' +
+                // 'less-loader?sourceMap'
+            )
         }]
     }
 };
