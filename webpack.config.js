@@ -32,7 +32,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             title: 'One More Redux Application',
-            hash: false
+            hash: false,
+            template: './templates/index.ejs'
         }),
         new ExtractTextPlugin('css/app.css'),
         devFlagPlugin
@@ -44,11 +45,12 @@ module.exports = {
             include: path.join(__dirname, 'src'),
             loader: 'react-hot-loader/webpack',
         }, {
+            test: /\.js$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
             include: path.join(__dirname, 'src'),
             query: {
-                presets: ['es2015', 'react']
+                presets: ['react', 'es2015']
             }
         }, {
             test: /\.css/,
