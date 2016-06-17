@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import App from './containers/App';
+import App from './containers/app';
 
 require('../assets/styles/app.less');
 
@@ -13,5 +13,4 @@ require('../assets/styles/app.less');
 // Check this repo:
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
-
 ReactDOM.render(<App />, document.getElementById('root'));

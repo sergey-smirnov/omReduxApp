@@ -6,10 +6,6 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var devFlagPlugin = new webpack.DefinePlugin({
-    __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
-});
-
 module.exports = {
     devtool: 'source-maps',
     entry: [
@@ -35,8 +31,7 @@ module.exports = {
             hash: false,
             template: './templates/index.ejs'
         }),
-        new ExtractTextPlugin('css/app.css'),
-        devFlagPlugin
+        new ExtractTextPlugin('css/app.css')
     ],
     module: {
         loaders: [{
