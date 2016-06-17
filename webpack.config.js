@@ -46,7 +46,7 @@ module.exports = {
         }, {
             loader: 'babel-loader',
             exclude: /node_modules/,
-            // include: path.join(__dirname, 'src'),
+            include: path.join(__dirname, 'src'),
             query: {
                 presets: ['es2015', 'react']
             }
@@ -62,11 +62,6 @@ module.exports = {
                 'css?sourceMap!' +
                 'autoprefixer?browsers=last 3 version!' +
                 'less?sourceMap'
-
-                // 'style-loader!',
-                // 'css-loader!' +
-                // 'autoprefixer-loader?browsers=last 3 version!' +
-                // 'less-loader?sourceMap'
             )
         }]
     }
