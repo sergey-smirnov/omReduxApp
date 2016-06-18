@@ -2,7 +2,9 @@
 
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+
+import thunkMiddleware from 'redux-thunk'
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -13,7 +15,7 @@ import AppBar from './appBar.js';
 
 import { omReactApp } from '../reducers/reducers.js';
 
-const store = createStore(omReactApp);
+const store = createStore(omReactApp, applyMiddleware(thunkMiddleware));
 
 const muiTheme = getMuiTheme();
 

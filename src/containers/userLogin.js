@@ -5,7 +5,8 @@ import UserActions from '../actions/userActions.js';
 
 const mapStateToProps = (state) => {
     return {
-        authenticated: state.UserReducer.get("authenticated")
+        authenticated: state.UserReducer.get("authenticated"),
+        isInProgress: state.UserReducer.get("isAuthenticationInProgress")
     }
 }
 

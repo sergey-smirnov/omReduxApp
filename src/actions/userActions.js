@@ -1,11 +1,24 @@
 import { Actions as UserActionsTypes } from '../constants/user';
 
 const UserActions = {
-    Authenticate: function(name, password) {
+    RequestAuthentication: function() {
         return {
-            type: UserActionsTypes.AUTHENTICATE,
-            name,
-            password
+            type: UserActionsTypes.REQUEST_AUTHENTICATION
+        };
+    },
+
+    UserAuthenticated: function(profile) {
+        return {
+            type: UserActionsTypes.AUTHENTICATED,
+            profile
+        };
+    },
+
+    Authenticate: function(name, password) {
+        return (dispatch) => {
+            dispatch(this.RequestAuthentication());
+
+            setTimeout(() => { dispatch(this.UserAuthenticated({ name: 'sergey' })) }, 3000);
         };
     },
 
