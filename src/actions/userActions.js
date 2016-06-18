@@ -1,6 +1,6 @@
 import { Actions as UserActionsTypes } from '../constants/user';
 
-export const UserActions = {
+const UserActions = {
     Authenticate: function(name, password) {
         return {
             type: UserActionsTypes.AUTHENTICATE,
@@ -14,4 +14,6 @@ export const UserActions = {
             type: UserActionsTypes.UNAUTHENTICATE
         };
     }
-}
+};
+
+export default UserActions;

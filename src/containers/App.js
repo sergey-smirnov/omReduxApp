@@ -8,13 +8,10 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 
-import AppBar from 'material-ui/AppBar';
+import UserLogin from './userLogin.js';
+import AppBar from './appBar.js';
 
-// import { user as UserReducer } from '../reducers/userReducer';
-// const combinedReducer = combineReducers({ UserReducer });
-
-//TODO: replace with import
-let omReactApp = require('../reducers/reducers').omReactApp;
+import { omReactApp } from '../reducers/reducers.js';
 
 const store = createStore(omReactApp);
 
@@ -24,7 +21,12 @@ export default class App extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
-                <AppBar title="One More Redux Application" iconClassNameRight="muidocs-icon-navigation-expand-more"/>
+              <Provider store={store}>
+                <div>
+                  <AppBar />
+                  <UserLogin />
+                </div>
+              </Provider>
             </MuiThemeProvider>
         );
     }
